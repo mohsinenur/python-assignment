@@ -1,4 +1,4 @@
-house,mansion
+house, mansion
 eat,consume
 family,house
 
