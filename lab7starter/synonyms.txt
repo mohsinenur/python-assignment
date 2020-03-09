@@ -1,6 +1,7 @@
 house,mansion
 eat,consume
 family,house
+
 family,class
 family,category
 family,family line
