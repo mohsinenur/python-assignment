@@ -26,7 +26,9 @@ class NameDB:
         containing at least the key "name" that is mapped to a 
         unique name in the list of names
         """ 
-        pass
+        with open('names.json') as f:
+            data = json.load(f)
+            return data, 200
     
     
     def write_names(self, name_object_list):
