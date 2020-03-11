@@ -31,7 +31,9 @@ class Names:
         contained in  this list of names; otherwise, retruns the 
         dictionary with the specified name
         """
-        for name_object in self.names:
+        nlist = list(self.names)
+        
+        for name_object in nlist[0]['names']:
             if name_object['name'] == name:
                 return name_object
         return None 
@@ -52,8 +54,9 @@ class Names:
         new_name = new_name_object['name']
         if self.get(new_name) != None:
             return None
-        
-        self.names.append(new_name_object)
+
+        nlist = list(self.names)
+        nlist[0]['names'].append(new_name_object)
         return new_name_object
     
     
@@ -66,13 +69,14 @@ class Names:
         dictionary 
         """
         remove_name_object = None
-        for name_object in self.names:
+        nlist = list(self.names)
+        for name_object in nlist[0]['names']:
             if name_object['name'] == name:
                 remove_name_object = name_object
         
         if remove_name_object == None:
             return None
         
-        self.names.remove(remove_name_object)
+        nlist[0]['names'].remove(remove_name_object)
         return remove_name_object
     

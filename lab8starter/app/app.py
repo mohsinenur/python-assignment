@@ -15,7 +15,7 @@ names = Names(name_db.read_names())
 @app.route('/names')
 def get_names():
     all_names = names.get_all()
-    return json.dumps(all_names), 200;
+    return json.dumps(all_names), 200
 
 @app.route('/name/<string:name>')
 def get_single_name(name):
@@ -23,14 +23,32 @@ def get_single_name(name):
     if single_names:
         return json.dumps(single_names), 200
     else:
-        return json.dumps({"error": "No name found"}), 400;
+        return json.dumps({"error": "No name found"}), 400
 
 @app.route('/name', methods=['POST'])
 def add_new_name():
-    data = {"name": "Harper", "ranking": 9, "gender": ["M", "F"]}
+    data = request.json
     response = names.add(data)
     if response != None:
         return json.dumps(response), 201;
     else:
         return json.dumps({"error": "Invalid keys"}), 400;
 
+
+@app.route('/name', methods=['PUT'])
+def add_or_update_name():
+    data = request.json
+    response = names.add(data)
+    if response != None:
+        return json.dumps(response), 201;
+    else:
+        return json.dumps({"error": "Invalid keys"}), 400;
+
+@app.route('/name/<string:name>', methods=['DELETE'])
+def delete_name(name):
+    name = name
+    response = names.delete(name)
+    if response != None:
+        return json.dumps(response), 200;
+    else:
+        return json.dumps({"error": "Name data does not exist"}), 404;
